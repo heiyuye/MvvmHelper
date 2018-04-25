@@ -1,18 +1,21 @@
 package com.liucr.mvvmhelper.base;
 
+import android.app.ProgressDialog;
 import android.arch.lifecycle.LifecycleOwner;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 
-import com.liucr.rapiddevelopmenthelper.utils.StatusBarCompat;
+import com.liucr.mvvmhelper.utils.StatusBarCompat;
 
 /**
  * @author liucr on 2018/3/26/026.
  */
 
 public class BaseActivity extends AppCompatActivity implements LifecycleOwner {
+
+    private ProgressDialog progressDialog;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -40,5 +43,12 @@ public class BaseActivity extends AppCompatActivity implements LifecycleOwner {
      */
     protected boolean isDarkMode() {
         return false;
+    }
+
+    public ProgressDialog getProgressDialog() {
+        if (progressDialog == null) {
+            progressDialog = new ProgressDialog(this);
+        }
+        return progressDialog;
     }
 }

@@ -1,34 +1,43 @@
 package com.liucr.mvvmhelper.base;
 
-import android.databinding.DataBindingUtil;
-import android.databinding.ViewDataBinding;
+import android.arch.lifecycle.Observer;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v7.widget.Toolbar;
 
-import com.liucr.rapiddevelopmenthelper.R;
+import com.liucr.mvvmhelper.event.DialogData;
 
-public abstract class BaseVmActivity<VB extends ViewDataBinding> extends BaseActivity {
-
-    // 视图绑定对象
-    protected VB viewDataBinding;
+public abstract class BaseVmActivity extends BaseActivity {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        // 得到DataBinding
-        viewDataBinding = DataBindingUtil.setContentView(this, getLayoutId());
-        setupToolbar();
     }
 
-    protected abstract int getLayoutId();
+    protected void setProgressDialogData(DialogData dialogData) {
+        dialogData.dismiss.observe(this, new Observer<Void>() {
+            @Override
+            public void onChanged(@Nullable Void aVoid) {
+                getProgressDialog().dismiss();
+            }
+        });
 
-    protected abstract void initView();
+        dialogData.show.observe(this, new Observer<Void>() {
+            @Override
+            public void onChanged(@Nullable Void aVoid) {
+                getProgressDialog().show();
+            }
+        });
 
-    protected abstract void initViewModel();
-
-    private void setupToolbar() {
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        dialogData.contentRes.observe(this, new Observer<Integer>() {
+            @Override
+            public void onChanged(@Nullable Integer integer) {
+                if (integer != null) {
+                    getProgressDialog().setMessage(getString(integer));
+                } else {
+                    getProgressDialog().setMessage(null);
+                }
+            }
+        });
     }
+
 }
