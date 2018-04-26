@@ -10,6 +10,7 @@
             name="searchViewModel"
             type="com.liucr.mvvmhelperdemo.module.search.viewmodel.SearchViewModel" />
 
+        <import type="me.tatarka.bindingcollectionadapter2.LayoutManagers"/>
     </data>
 
     <android.support.constraint.ConstraintLayout
@@ -53,6 +54,9 @@
             android:id="@+id/rv_book"
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            app:layoutManager="@{LayoutManagers.grid(2)}"
+            app:items="@{searchViewModel.items}"
+            app:itemBinding="@{searchViewModel.itemBinding}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tb_search" />
 
