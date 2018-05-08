@@ -10,6 +10,7 @@ import android.support.annotation.NonNull;
 import android.util.Log;
 
 import com.kuluo.mvvmhelper.base.RecyclerViewModel;
+import com.kuluo.mvvmhelper.bindingadapter.RecyclerViewBindingAdapter;
 import com.kuluo.mvvmhelper.event.DialogData;
 import com.kuluo.mvvmhelper.utils.LogUtil;
 import com.liucr.mvvmhelperdemo.BR;
@@ -35,8 +36,6 @@ public class SearchViewModel extends RecyclerViewModel {
     public SearchViewModel(@NonNull Application application) {
         super(application);
         mSearchModel = new SearchModel(mBookListResultConsumer, mThrowableConsumer);
-        initRecyclerView();
-//        RecyclerViewBindingAdapter.setAdapter();
     }
 
     @Override
@@ -46,14 +45,9 @@ public class SearchViewModel extends RecyclerViewModel {
         mItemChildClickIds.add(R.id.book_name);
     }
 
-    @OnLifecycleEvent(Lifecycle.Event.ON_CREATE)
-    public void onCreate() {
-    }
-
     @Override
     protected void onCleared() {
         super.onCleared();
-        LogUtil.d("onCleared");
         mSearchModel.destroy();
     }
 

@@ -1,9 +1,12 @@
 package com.kuluo.mvvmhelper.base;
 
 import android.app.Application;
+import android.arch.lifecycle.Lifecycle;
+import android.arch.lifecycle.OnLifecycleEvent;
 import android.databinding.ObservableArrayList;
 import android.databinding.ObservableList;
 import android.support.annotation.NonNull;
+import android.util.Log;
 
 import com.kuluo.mvvmhelper.R;
 import com.kuluo.mvvmhelper.view.recyclerview.listener.OnItemChildClickListener;
@@ -30,6 +33,11 @@ public abstract class RecyclerViewModel extends BaseViewModel implements OnItemC
 
     public RecyclerViewModel(@NonNull Application application) {
         super(application);
+    }
+
+    @OnLifecycleEvent(Lifecycle.Event.ON_CREATE)
+    public void onCreate() {
+        initRecyclerView();
     }
 
     public abstract void initRecyclerView();
