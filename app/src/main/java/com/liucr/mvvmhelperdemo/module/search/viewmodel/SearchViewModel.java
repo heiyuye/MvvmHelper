@@ -7,12 +7,11 @@ import android.arch.lifecycle.OnLifecycleEvent;
 import android.databinding.ObservableArrayList;
 import android.databinding.ObservableList;
 import android.support.annotation.NonNull;
+import android.util.Log;
 
-import com.liucr.mvvmhelper.base.BaseViewModel;
-import com.liucr.mvvmhelper.bindingadapter.ImageViewBindingAdapter;
-import com.liucr.mvvmhelper.event.DialogData;
-import com.liucr.mvvmhelper.event.SingleLiveEvent;
-import com.liucr.mvvmhelper.utils.LogUtil;
+import com.kuluo.mvvmhelper.base.RecyclerViewModel;
+import com.kuluo.mvvmhelper.event.DialogData;
+import com.kuluo.mvvmhelper.utils.LogUtil;
 import com.liucr.mvvmhelperdemo.BR;
 import com.liucr.mvvmhelperdemo.R;
 import com.liucr.mvvmhelperdemo.mode.Book;
@@ -20,30 +19,31 @@ import com.liucr.mvvmhelperdemo.mode.BookListResult;
 import com.liucr.mvvmhelperdemo.module.search.model.SearchModel;
 
 import io.reactivex.functions.Consumer;
-import me.tatarka.bindingcollectionadapter2.ItemBinding;
-import me.tatarka.bindingcollectionadapter2.collections.MergeObservableList;
-import me.tatarka.bindingcollectionadapter2.itembindings.OnItemBindClass;
 
 /**
  * 搜索页面
  * Created by liucr on 2018/4/25.
  */
-public class SearchViewModel extends BaseViewModel {
+public class SearchViewModel extends RecyclerViewModel {
 
+    private ObservableList<Book> dataList = new ObservableArrayList<>();
     public final MutableLiveData<String> mKeyword = new MutableLiveData<>();
     public final DialogData mDialogData = new DialogData();
 
     private SearchModel mSearchModel;
 
-    private ObservableList<Book> books = new ObservableArrayList<>();
-    public final MergeObservableList<Object> items = new MergeObservableList<>()
-            .insertList(books);
-    public final OnItemBindClass<Object> itemBinding = new OnItemBindClass()
-            .map(Book.class, BR.book, R.layout.item_book);
-
     public SearchViewModel(@NonNull Application application) {
         super(application);
         mSearchModel = new SearchModel(mBookListResultConsumer, mThrowableConsumer);
+        initRecyclerView();
+//        RecyclerViewBindingAdapter.setAdapter();
+    }
+
+    @Override
+    public void initRecyclerView() {
+        itemBinding.map(Book.class, BR.book, R.layout.item_book);
+        items.insertList(dataList);
+        mItemChildClickIds.add(R.id.book_name);
     }
 
     @OnLifecycleEvent(Lifecycle.Event.ON_CREATE)
@@ -75,7 +75,7 @@ public class SearchViewModel extends BaseViewModel {
      * 刷新
      */
     public void refresh() {
-        mDialogData.show.call();
+        mDialogData.show();
         mSearchModel
                 .setStart(1)
                 .setCount(5)
@@ -95,8 +95,8 @@ public class SearchViewModel extends BaseViewModel {
     private final Consumer<BookListResult> mBookListResultConsumer = new Consumer<BookListResult>() {
         @Override
         public void accept(BookListResult bookListResult) {
-            mDialogData.dismiss.call();
-            books.addAll(bookListResult.getBooks());
+            mDialogData.dismiss();
+            dataList.addAll(bookListResult.getBooks());
         }
     };
 
@@ -106,7 +106,17 @@ public class SearchViewModel extends BaseViewModel {
     private final Consumer<Throwable> mThrowableConsumer = new Consumer<Throwable>() {
         @Override
         public void accept(Throwable throwable) {
-            mDialogData.dismiss.call();
+            mDialogData.dismiss();
         }
     };
+
+    @Override
+    public void onItemClick(int position) {
+        Log.e("liucr", "onItemClick  " + position);
+    }
+
+    @Override
+    public void onItemChildClick(int position, int viewId) {
+        Log.e("liucr", "onItemChildClick  " + position);
+    }
 }

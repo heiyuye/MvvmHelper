@@ -6,7 +6,6 @@ import com.liucr.mvvmhelperdemo.mode.Book;
 import com.liucr.mvvmhelperdemo.mode.BookListResult;
 
 import io.reactivex.Observable;
-import retrofit2.http.Field;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
 import retrofit2.http.Query;

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="EditText">
+        <attr name="passwordEnbale" format="boolean" />
+    </declare-styleable>
+
+    <declare-styleable name="CheckBox">
+        <attr name="onCheckedChangeListener" format="reference" />
+    </declare-styleable>
+
+    <declare-styleable name="RecyclerView">
+        <!-- require ItemView {@link me.tatarka.bindingcollectionadapter.ItemView} or ItemViewSelector {{@link me.tatarka.bindingcollectionadapter.ItemViewSelector}.} -->
+        <attr name="itemView" format="reference" />
+        <!-- require List<ViewModel> bind to ItemView to presentation.-->
+        <attr name="items" format="reference" />
+        <!-- require a adapter which type of BindingRecyclerViewAdapter<T> to AdapterView-->
+        <attr name="adapter" format="reference" />
+        <attr name="itemDivider" format="reference" />
+        <attr name="dividerOrientation" format="reference" />
+        <attr name="isShowEndDivider" format="boolean" />
+        <attr name="itemDecoration" format="reference" />
+        <attr name="animator" format="reference" />
+        <attr name="itemBinding" format="reference" />
+        <attr name="onItemChildClickListener"  format="reference" />
+        <attr name="itemChildClickIds"  format="reference" />
+        <attr name="onItemChildLongClickListener"  format="reference" />
+        <attr name="itemChildLongClickIds"  format="reference" />
+        <attr name="onItemClickListener"  format="reference" />
+        <attr name="onItemLongClickListener"  format="reference" />
+
+    </declare-styleable>
+
+    <declare-styleable name="ViewPager">
+        <attr name="onPageChangeListener" format="reference" />
+        <attr name="pagerAdapter" format="reference" />
+        <attr name="scrollEnable" format="reference" />
+    </declare-styleable>
+
+</resources>

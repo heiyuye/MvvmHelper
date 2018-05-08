@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/MvvmHelper.iml" filepath="$PROJECT_DIR$/.idea/MvvmHelper.iml" />
-      <module fileurl="file://$PROJECT_DIR$/MvvmHelper.iml" filepath="$PROJECT_DIR$/MvvmHelper.iml" />
+      <module fileurl="file://$PROJECT_DIR$/MvvmHelperDemo.iml" filepath="$PROJECT_DIR$/MvvmHelperDemo.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/mvvmhelper/mvvmhelper.iml" filepath="$PROJECT_DIR$/mvvmhelper/mvvmhelper.iml" />
     </modules>

@@ -1,12 +1,11 @@
 package com.liucr.mvvmhelperdemo.module.search.view;
 
-import android.app.ProgressDialog;
 import android.arch.lifecycle.ViewModelProviders;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 
-import com.liucr.mvvmhelper.base.BaseVmActivity;
+import com.kuluo.mvvmhelper.base.BaseVmActivity;
 import com.liucr.mvvmhelperdemo.R;
 import com.liucr.mvvmhelperdemo.databinding.ActivitySearchBinding;
 import com.liucr.mvvmhelperdemo.module.search.viewmodel.SearchViewModel;
@@ -26,6 +25,7 @@ public class SearchActivity extends BaseVmActivity {
         viewDataBinding.setLifecycleOwner(this);
 
         initViewModel();
+        initView();
         getProgressDialog().setMessage("loading...");
         setProgressDialogData(searchViewModel.mDialogData);
         setSupportActionBar(viewDataBinding.tbSearch);
@@ -41,6 +41,10 @@ public class SearchActivity extends BaseVmActivity {
         searchViewModel = ViewModelProviders.of(this).get(SearchViewModel.class);
         getLifecycle().addObserver(searchViewModel);
         viewDataBinding.setSearchViewModel(searchViewModel);
+    }
+
+    public void initView() {
+
     }
 
 }
