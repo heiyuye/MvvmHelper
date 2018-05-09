@@ -1,6 +1,6 @@
 package com.liucr.mvvmhelperdemo.http;
 
-import com.kuluo.mvvmhelper.http.HttpManager;
+import com.liucr.mvvmhelper.http.HttpManager;
 import com.liucr.mvvmhelperdemo.http.api.ApiConstant;
 import com.liucr.mvvmhelperdemo.http.api.DouBanApi;
 

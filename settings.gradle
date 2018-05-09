@@ -1,1 +1,1 @@
-include ':app', ':mvvmhelper'
+include ':app', ':mvvmhelper', ':bindinglibrary'

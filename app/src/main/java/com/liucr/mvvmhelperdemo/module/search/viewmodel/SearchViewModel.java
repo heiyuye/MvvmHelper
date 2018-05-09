@@ -1,18 +1,14 @@
 package com.liucr.mvvmhelperdemo.module.search.viewmodel;
 
 import android.app.Application;
-import android.arch.lifecycle.Lifecycle;
 import android.arch.lifecycle.MutableLiveData;
-import android.arch.lifecycle.OnLifecycleEvent;
 import android.databinding.ObservableArrayList;
 import android.databinding.ObservableList;
 import android.support.annotation.NonNull;
 import android.util.Log;
 
-import com.kuluo.mvvmhelper.base.RecyclerViewModel;
-import com.kuluo.mvvmhelper.bindingadapter.RecyclerViewBindingAdapter;
-import com.kuluo.mvvmhelper.event.DialogData;
-import com.kuluo.mvvmhelper.utils.LogUtil;
+import com.liucr.mvvmhelperdemo.module.RecyclerViewModel;
+import com.liucr.mvvmhelper.event.DialogData;
 import com.liucr.mvvmhelperdemo.BR;
 import com.liucr.mvvmhelperdemo.R;
 import com.liucr.mvvmhelperdemo.mode.Book;

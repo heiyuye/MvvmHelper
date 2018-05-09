@@ -5,7 +5,7 @@ import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 
-import com.kuluo.mvvmhelper.base.BaseVmActivity;
+import com.liucr.mvvmhelper.base.BaseVmActivity;
 import com.liucr.mvvmhelperdemo.R;
 import com.liucr.mvvmhelperdemo.databinding.ActivitySearchBinding;
 import com.liucr.mvvmhelperdemo.module.search.viewmodel.SearchViewModel;
