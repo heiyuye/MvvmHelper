@@ -1,13 +1,13 @@
-package com.liucr.bindinglibrary.recyclerview.viewholder;
+package com.liucr.bindinglibrary.view.recyclerview.viewholder;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 
-import com.liucr.bindinglibrary.recyclerview.listener.OnItemChildClickListener;
-import com.liucr.bindinglibrary.recyclerview.listener.OnItemChildLongClickListener;
-import com.liucr.bindinglibrary.recyclerview.listener.OnItemClickListener;
-import com.liucr.bindinglibrary.recyclerview.listener.OnItemLongClickListener;
+import com.liucr.bindinglibrary.view.recyclerview.listener.OnItemChildClickListener;
+import com.liucr.bindinglibrary.view.recyclerview.listener.OnItemChildLongClickListener;
+import com.liucr.bindinglibrary.view.recyclerview.listener.OnItemClickListener;
+import com.liucr.bindinglibrary.view.recyclerview.listener.OnItemLongClickListener;
 
 import java.util.List;
 

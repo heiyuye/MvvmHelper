@@ -29,12 +29,12 @@ public class SearchModel implements BaseModel {
     /**
      * 开始条目
      */
-    private int mStart;
+    private int mStart = 1;
 
     /**
      * 条目数量
      */
-    private int mCount;
+    private int mCount = 10;
 
     /**
      * 搜索成功消费者
@@ -69,6 +69,10 @@ public class SearchModel implements BaseModel {
         return this;
     }
 
+    public int getStart() {
+        return mStart;
+    }
+
     public SearchModel setCount(int count) {
         this.mCount = count;
         return this;
@@ -88,7 +92,6 @@ public class SearchModel implements BaseModel {
         if (!mDisposable.isDisposed()) {
             return;
         }
-        mStart = mCount + mStart;
         search();
     }
 
@@ -99,4 +102,5 @@ public class SearchModel implements BaseModel {
             mDisposable.dispose();
         }
     }
+
 }

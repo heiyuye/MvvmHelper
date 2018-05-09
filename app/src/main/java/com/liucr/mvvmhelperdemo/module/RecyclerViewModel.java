@@ -5,10 +5,10 @@ import android.arch.lifecycle.Lifecycle;
 import android.arch.lifecycle.OnLifecycleEvent;
 import android.support.annotation.NonNull;
 
-import com.liucr.bindinglibrary.recyclerview.listener.OnItemChildClickListener;
-import com.liucr.bindinglibrary.recyclerview.listener.OnItemChildLongClickListener;
-import com.liucr.bindinglibrary.recyclerview.listener.OnItemClickListener;
-import com.liucr.bindinglibrary.recyclerview.listener.OnItemLongClickListener;
+import com.liucr.bindinglibrary.view.recyclerview.listener.OnItemChildClickListener;
+import com.liucr.bindinglibrary.view.recyclerview.listener.OnItemChildLongClickListener;
+import com.liucr.bindinglibrary.view.recyclerview.listener.OnItemClickListener;
+import com.liucr.bindinglibrary.view.recyclerview.listener.OnItemLongClickListener;
 import com.liucr.mvvmhelper.base.BaseViewModel;
 
 import java.util.ArrayList;

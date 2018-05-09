@@ -7,6 +7,8 @@ import android.databinding.ObservableList;
 import android.support.annotation.NonNull;
 import android.util.Log;
 
+import com.liucr.bindinglibrary.view.smartrefreshlayout.LoadMoreState;
+import com.liucr.bindinglibrary.view.smartrefreshlayout.RefreshState;
 import com.liucr.mvvmhelperdemo.module.RecyclerViewModel;
 import com.liucr.mvvmhelper.event.DialogData;
 import com.liucr.mvvmhelperdemo.BR;
@@ -14,6 +16,9 @@ import com.liucr.mvvmhelperdemo.R;
 import com.liucr.mvvmhelperdemo.mode.Book;
 import com.liucr.mvvmhelperdemo.mode.BookListResult;
 import com.liucr.mvvmhelperdemo.module.search.model.SearchModel;
+import com.scwang.smartrefresh.layout.api.RefreshLayout;
+import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener;
+import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 
 import io.reactivex.functions.Consumer;
 
@@ -21,11 +26,13 @@ import io.reactivex.functions.Consumer;
  * 搜索页面
  * Created by liucr on 2018/4/25.
  */
-public class SearchViewModel extends RecyclerViewModel {
+public class SearchViewModel extends RecyclerViewModel implements OnRefreshListener, OnLoadMoreListener {
 
     private ObservableList<Book> dataList = new ObservableArrayList<>();
     public final MutableLiveData<String> mKeyword = new MutableLiveData<>();
     public final DialogData mDialogData = new DialogData();
+    public final MutableLiveData<Integer> refreshState = new MutableLiveData<>();
+    public final MutableLiveData<Integer> loadMoreState = new MutableLiveData<>();
 
     private SearchModel mSearchModel;
 
@@ -47,6 +54,18 @@ public class SearchViewModel extends RecyclerViewModel {
         mSearchModel.destroy();
     }
 
+    @Override
+    public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
+        mSearchModel.loadMore();
+    }
+
+    @Override
+    public void onRefresh(@NonNull RefreshLayout refreshLayout) {
+        mSearchModel
+                .setStart(1)
+                .search();
+    }
+
     /**
      * 根据关键字搜索
      *
@@ -57,26 +76,7 @@ public class SearchViewModel extends RecyclerViewModel {
         mDialogData.show.call();
         mSearchModel.setKeyword(keyword)
                 .setStart(1)
-                .setCount(5)
                 .search();
-    }
-
-    /**
-     * 刷新
-     */
-    public void refresh() {
-        mDialogData.show();
-        mSearchModel
-                .setStart(1)
-                .setCount(5)
-                .search();
-    }
-
-    /**
-     * 加载更多
-     */
-    public void loadMore() {
-        mSearchModel.loadMore();
     }
 
     /**
@@ -86,7 +86,16 @@ public class SearchViewModel extends RecyclerViewModel {
         @Override
         public void accept(BookListResult bookListResult) {
             mDialogData.dismiss();
+
+            if (bookListResult.getStart() == 1) {
+                dataList.clear();
+                refreshState.setValue(RefreshState.REFRESH_SUCCESS);
+            } else {
+                loadMoreState.setValue(LoadMoreState.LOAD_MORE_COMPLETE);
+            }
+
             dataList.addAll(bookListResult.getBooks());
+            mSearchModel.setStart(bookListResult.getStart() + bookListResult.getCount());
         }
     };
 
@@ -97,6 +106,11 @@ public class SearchViewModel extends RecyclerViewModel {
         @Override
         public void accept(Throwable throwable) {
             mDialogData.dismiss();
+            if (mSearchModel.getStart() == 1) {
+                refreshState.setValue(RefreshState.REFRESH_FAIL);
+            } else {
+                loadMoreState.setValue(LoadMoreState.LOAD_MORE_FAIL);
+            }
         }
     };
 
@@ -109,4 +123,5 @@ public class SearchViewModel extends RecyclerViewModel {
     public void onItemChildClick(int position, int viewId) {
         Log.e("liucr", "onItemChildClick  " + position);
     }
+
 }

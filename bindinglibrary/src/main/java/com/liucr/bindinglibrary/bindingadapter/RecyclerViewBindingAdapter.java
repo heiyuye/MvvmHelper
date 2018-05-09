@@ -5,11 +5,11 @@ import android.databinding.ViewDataBinding;
 import android.support.v7.widget.RecyclerView;
 
 
-import com.liucr.bindinglibrary.recyclerview.listener.OnItemChildClickListener;
-import com.liucr.bindinglibrary.recyclerview.listener.OnItemChildLongClickListener;
-import com.liucr.bindinglibrary.recyclerview.listener.OnItemClickListener;
-import com.liucr.bindinglibrary.recyclerview.listener.OnItemLongClickListener;
-import com.liucr.bindinglibrary.recyclerview.viewholder.BaseViewHolder;
+import com.liucr.bindinglibrary.view.recyclerview.listener.OnItemChildClickListener;
+import com.liucr.bindinglibrary.view.recyclerview.listener.OnItemChildLongClickListener;
+import com.liucr.bindinglibrary.view.recyclerview.listener.OnItemClickListener;
+import com.liucr.bindinglibrary.view.recyclerview.listener.OnItemLongClickListener;
+import com.liucr.bindinglibrary.view.recyclerview.viewholder.BaseViewHolder;
 
 import java.util.List;
 

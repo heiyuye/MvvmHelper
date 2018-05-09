@@ -52,6 +52,10 @@
 
         <com.scwang.smartrefresh.layout.SmartRefreshLayout
             android:id="@+id/smartRefreshLayout"
+            loadMoreListener="@{searchViewModel}"
+            loadMoreState="@{searchViewModel.loadMoreState}"
+            refreshListener="@{searchViewModel}"
+            refreshState="@{searchViewModel.refreshState}"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -60,6 +64,7 @@
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/rv_book"
                 itemChildClickIds="@{searchViewModel.mItemChildClickIds}"
+                layoutManager="@{LayoutManagers.grid(2)}"
                 onItemChildClickListener="@{searchViewModel}"
                 onItemClickListener="@{searchViewModel}"
                 android:layout_width="match_parent"
@@ -67,8 +72,7 @@
                 android:clipToPadding="false"
                 android:paddingTop="10dp"
                 app:itemBinding="@{searchViewModel.itemBinding}"
-                app:items="@{searchViewModel.items}"
-                app:layoutManager="@{LayoutManagers.grid(2)}" />
+                app:items="@{searchViewModel.items}" />
         </com.scwang.smartrefresh.layout.SmartRefreshLayout>
 
 
