@@ -1,6 +1,7 @@
 package com.liucr.bindinglibrary.bindingadapter;
 
 import android.databinding.BindingAdapter;
+import android.databinding.adapters.ListenerUtil;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
@@ -13,7 +14,7 @@ public class ImageViewBindingAdapter {
         imageLoader(imageView, image, new RequestOptions().centerInside());
     }
 
-    @BindingAdapter(value = {"image", "placeholder", "error"})
+    @BindingAdapter(value = {"image", "placeholder", "error"}, requireAll = false)
     public static void imageLoader(ImageView imageView, Object image, int placeholder, int error) {
         imageLoader(imageView, image, RequestOptions.placeholderOf(placeholder).error(error).centerInside());
     }

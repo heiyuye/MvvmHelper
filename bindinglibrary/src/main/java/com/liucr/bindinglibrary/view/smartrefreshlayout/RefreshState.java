@@ -5,8 +5,10 @@ package com.liucr.bindinglibrary.view.smartrefreshlayout;
  */
 public interface RefreshState {
 
-    int REFRESH_SUCCESS = 1;
+    int REFRESH_TRIGGER = 1;
 
-    int REFRESH_FAIL =2;
+    int REFRESH_SUCCESS = 2;
+
+    int REFRESH_FAIL = 3;
 
 }

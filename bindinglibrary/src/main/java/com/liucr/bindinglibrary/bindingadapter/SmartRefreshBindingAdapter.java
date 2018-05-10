@@ -13,7 +13,6 @@ import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
  */
 public class SmartRefreshBindingAdapter {
 
-
     @BindingAdapter("refreshListener")
     public static void refreshListener(SmartRefreshLayout smartRefreshLayout, OnRefreshListener onRefreshListener) {
         smartRefreshLayout.setOnRefreshListener(onRefreshListener);
@@ -27,6 +26,9 @@ public class SmartRefreshBindingAdapter {
     @BindingAdapter("refreshState")
     public static void refreshState(SmartRefreshLayout smartRefreshLayout, int refreshState) {
         switch (refreshState) {
+            case RefreshState.REFRESH_TRIGGER:
+                smartRefreshLayout.autoRefresh();
+                break;
             case RefreshState.REFRESH_SUCCESS:
                 smartRefreshLayout.finishRefresh(true);
                 break;

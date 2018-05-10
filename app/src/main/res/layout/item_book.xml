@@ -19,14 +19,13 @@
 
         <ImageView
             android:id="@+id/book_img"
-            error="@{R.mipmap.ic_launcher_round}"
-            image="@{book.image}"
-            placeholder="@{R.mipmap.ic_launcher}"
             android:layout_width="200dp"
             android:layout_height="250dp"
             android:scaleType="fitXY"
+            app:image="@{book.image}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
+            app:placeholder="@{R.mipmap.ic_launcher}"
             tools:src="@mipmap/ic_launcher_round" />
 
         <TextView

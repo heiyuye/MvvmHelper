@@ -72,8 +72,7 @@ public class SearchViewModel extends RecyclerViewModel implements OnRefreshListe
      * @param keyword 关键字
      */
     public void searchByKey(String keyword) {
-
-        mDialogData.show.call();
+        refreshState.setValue(RefreshState.REFRESH_TRIGGER);
         mSearchModel.setKeyword(keyword)
                 .setStart(1)
                 .search();

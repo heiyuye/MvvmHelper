@@ -25,9 +25,9 @@ public class RecyclerViewBindingAdapter {
     // RecyclerView
     @SuppressWarnings("unchecked")
     @BindingAdapter(value = {"itemBinding", "items",
-            "onItemChildClickListener", "itemChildClickIds",
-            "onItemChildLongClickListener", "itemChildLongClickIds",
-            "onItemClickListener", "onItemLongClickListener"},
+            "onItemChildClickListener", "itemChildClickIds",            //子View点击事件
+            "onItemChildLongClickListener", "itemChildLongClickIds",    //子View长按事件
+            "onItemClickListener", "onItemLongClickListener"},          //item点击事件，item长按事件
             requireAll = false)
     public static <T> void setAdapter(RecyclerView recyclerView,
                                       ItemBinding<T> itemBinding,
